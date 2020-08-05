@@ -7,7 +7,7 @@ import java.io.OutputStream;
 import java.io.File;
 import java.util.Properties;
 
-public class Settings {
+public class Settings implements Config {
     private final Properties props;
 
     public Settings() {
@@ -31,11 +31,19 @@ public class Settings {
         }
     }
 
+    @Override
     public String getKey() {
         return this.props.getProperty("api-key");
     }
 
+    @Override
     public String getUrl() {
         return this.props.getProperty("url");
     }
+}
+
+interface Config {
+    String getKey();
+
+    String getUrl();
 }
