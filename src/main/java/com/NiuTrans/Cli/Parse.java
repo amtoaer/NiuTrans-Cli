@@ -26,7 +26,7 @@ public class Parse {
         switch (finalType) {
             case "text" -> textParser(json);
             case "XML" -> XMLParser(json);
-            case "bilingual" -> bilingualParser(json);
+            case "compare" -> bilingualParser(json);
         }
     }
 
