@@ -20,7 +20,7 @@ public class Settings implements Config {
         // XML格式接口
         map.put("XML", "https://free.niutrans.com/NiuTransServer/translationXML");
         // 双语对照接口
-        map.put("bilingual", "https://free.niutrans.com/NiuTransServer/translationAlign");
+        map.put("compare", "https://free.niutrans.com/NiuTransServer/translationAlign");
         props = new Properties();
         File config = new File(System.getProperty("user.home"), ".NiuTrans");
         try (InputStream defaultConfig = this.getClass().getClassLoader().getResourceAsStream("settings.properties")) {
