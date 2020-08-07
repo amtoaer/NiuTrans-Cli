@@ -5,11 +5,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class SettingsTest {
-    Settings settings = new Settings();
+    Config settings = new Settings();
 
     @Test
     public void settingsTest() {
-        assertEquals("1423235123123", settings.getKey());
-        assertEquals("https://free.niutrans.com/NiuTransServer/translation", settings.getUrl());
+        assertEquals("531cb65d16b3ed2df2b4c6a6e44171ec", settings.getKey());
     }
 }
