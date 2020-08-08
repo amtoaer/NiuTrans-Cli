@@ -1,6 +1,6 @@
 # NiuTrans-Cli
 
-![](https://img.shields.io/badge/Java-14-orange?style=for-the-badge&logo=java)![](https://img.shields.io/github/v/release/amtoaer/NiuTrans-Cli?style=for-the-badge&logo=github)
+![](https://img.shields.io/badge/Java-14-orange?style=for-the-badge&logo=java)  ![](https://img.shields.io/github/v/release/amtoaer/NiuTrans-Cli?style=for-the-badge&logo=github)  ![](https://img.shields.io/github/license/amtoaer/NiuTrans-Cli?style=for-the-badge&logo=litecoin) 
 
 ## 介绍
 
