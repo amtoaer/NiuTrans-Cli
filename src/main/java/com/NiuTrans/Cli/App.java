@@ -12,10 +12,17 @@ public class App {
     private static String src = "";
     @Parameter(names = { "via" }, description = "Translation method")
     private static String type = null;
+    @Parameter(names = { "help", "--help", "-help", "-h" }, help = true, description = "Print these info and exit")
+    private static boolean help;
 
     public static void main(String[] args) {
         App main = new App();
-        JCommander.newBuilder().addObject(main).build().parse(args);
+        var commander = JCommander.newBuilder().addObject(main).build();
+        commander.parse(args);
+        if (help) {
+            commander.usage();
+            return;
+        }
         try {
             Parse.parse(from, to, src, type);
         } catch (Exception e) {
