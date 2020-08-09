@@ -6,8 +6,8 @@ import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.Attribute;
 import java.util.List;
 
-public class Parse {
-    public static void parse(String from, String to, String src, String type) throws Exception {
+public class Top {
+    public static void translate(String from, String to, String src, String type) throws Exception {
         Config config = new Settings();
         List<String> validType = List.of("text", "XML", "compare");
         // 使用type参数覆盖配置文件中的type
