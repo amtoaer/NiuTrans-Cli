@@ -24,7 +24,7 @@ public class App {
             return;
         }
         try {
-            Parse.parse(from, to, src, type);
+            Top.translate(from, to, src, type);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,13 +1,14 @@
 package com.NiuTrans.Cli;
 
+import cn.hutool.core.util.XmlUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.Attribute;
 import java.util.List;
 
-public class Parse {
-    public static void parse(String from, String to, String src, String type) throws Exception {
+public class Top {
+    public static void translate(String from, String to, String src, String type) throws Exception {
         Config config = new Settings();
         List<String> validType = List.of("text", "XML", "compare");
         // 使用type参数覆盖配置文件中的type
@@ -35,15 +36,20 @@ public class Parse {
         System.out.println(Ansi.colorize((String) json.get("tgt_text"), Attribute.RED_TEXT()));
     }
 
-    private static void XMLParser(JSONObject json) {
-        // XML接口返回结果我还没搞明白，先当做纯文本处理
+    private static void XMLParser(JSONObject json) throws Exception {
+        // XML接口比起普通的文本翻译，可以防止翻译XML标签
         System.out.println(Ansi.colorize("XML翻译：", Attribute.YELLOW_TEXT()));
-        System.out.println(Ansi.colorize((String) json.get("tgt_text"), Attribute.RED_TEXT()));
+        // 对XML文档进行格式化输出
+        System.out.println(Ansi.colorize(XmlUtil.format((String) json.get("tgt_text")), Attribute.RED_TEXT()));
     }
 
-    private static void bilingualParser(JSONObject json) {
-        System.out.println(Ansi.colorize("双语对照翻译：", Attribute.YELLOW_TEXT()));
+    private static void bilingualParser(JSONObject json) throws Exception {
         json = (JSONObject) json.get("align");
+        // 据测试，在目标语言与源语言相同时，返回结果为{from:...,to:...,tgt_text:...}
+        if (json == null) {
+            throw new Exception("please ensure that target language is different from source language");
+        }
+        System.out.println(Ansi.colorize("双语对照翻译：", Attribute.YELLOW_TEXT()));
         int i = 0;
         JSONObject row, sentence;
         while ((row = (JSONObject) json.get(String.valueOf(i))) != null) {
