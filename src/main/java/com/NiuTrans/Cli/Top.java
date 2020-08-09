@@ -1,5 +1,6 @@
 package com.NiuTrans.Cli;
 
+import cn.hutool.core.util.XmlUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.diogonunes.jcolor.Ansi;
@@ -35,10 +36,14 @@ public class Top {
         System.out.println(Ansi.colorize((String) json.get("tgt_text"), Attribute.RED_TEXT()));
     }
 
-    private static void XMLParser(JSONObject json) {
-        // XML接口返回结果我还没搞明白，先当做纯文本处理
+    private static void XMLParser(JSONObject json) throws Exception {
+        // XML接口比起普通的文本翻译，可以防止翻译XML标签
+        // 使用hutool-core中的XmlUtil进行处理，格式化输出XML字符串
+        String target = (String) json.get("tgt_text");
+        var document = XmlUtil.parseXml(target);
         System.out.println(Ansi.colorize("XML翻译：", Attribute.YELLOW_TEXT()));
-        System.out.println(Ansi.colorize((String) json.get("tgt_text"), Attribute.RED_TEXT()));
+        // 对XML文档进行格式化输出
+        System.out.println(Ansi.colorize(XmlUtil.format(document), Attribute.RED_TEXT()));
     }
 
     private static void bilingualParser(JSONObject json) throws Exception {
