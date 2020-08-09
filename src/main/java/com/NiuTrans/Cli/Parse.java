@@ -41,9 +41,13 @@ public class Parse {
         System.out.println(Ansi.colorize((String) json.get("tgt_text"), Attribute.RED_TEXT()));
     }
 
-    private static void bilingualParser(JSONObject json) {
-        System.out.println(Ansi.colorize("双语对照翻译：", Attribute.YELLOW_TEXT()));
+    private static void bilingualParser(JSONObject json) throws Exception {
         json = (JSONObject) json.get("align");
+        // 据测试，在目标语言与源语言相同时，返回结果为{from:...,to:...,tgt_text:...}
+        if (json == null) {
+            throw new Exception("please ensure that target language is different from source language");
+        }
+        System.out.println(Ansi.colorize("双语对照翻译：", Attribute.YELLOW_TEXT()));
         int i = 0;
         JSONObject row, sentence;
         while ((row = (JSONObject) json.get(String.valueOf(i))) != null) {
