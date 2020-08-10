@@ -53,10 +53,17 @@ public class Top {
     }
 
     private static void XMLParser(JSONObject json) throws Exception {
-        // XML接口比起普通的文本翻译，可以防止翻译XML标签
+        // XML接口比起普通的文本翻译，可以保留原文本中的XML标签，保证译文格式清晰
+        String result;
+        // 尝试解析返回的XML，如果出错说明返回结果并非XML文档
+        try {
+            result = XmlUtil.format((String) json.get("tgt_text"));
+        } catch (Exception e) {
+            throw new Exception("result is not a XML ducument");
+        }
         System.out.println(Ansi.colorize("XML翻译：", Attribute.YELLOW_TEXT()));
         // 对XML文档进行格式化输出
-        System.out.println(Ansi.colorize(XmlUtil.format((String) json.get("tgt_text")), Attribute.RED_TEXT()));
+        System.out.println(Ansi.colorize(result, Attribute.RED_TEXT()));
     }
 
     private static void bilingualParser(JSONObject json) throws Exception {
