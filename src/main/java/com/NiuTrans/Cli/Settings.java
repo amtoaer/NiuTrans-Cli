@@ -15,12 +15,20 @@ public class Settings implements Config {
 
     public Settings() {
         map = new HashMap<>();
+
+        /* 翻译接口 */
         // 文本翻译接口
         map.put("text", "https://free.niutrans.com/NiuTransServer/translation");
         // XML格式接口
         map.put("XML", "https://free.niutrans.com/NiuTransServer/translationXML");
         // 双语对照接口
         map.put("compare", "https://free.niutrans.com/NiuTransServer/translationAlign");
+        /* 定制化接口 */
+        // 术语词典接口
+        map.put("word", "https://apis.niutrans.com/NiuTransServerDict/addDictionary");
+        // 翻译记忆接口
+        map.put("sentence", "https://apis.niutrans.com/NiuTransServerDict/addMemoryStore");
+
         props = new Properties();
         File config = new File(System.getProperty("user.home"), ".NiuTrans");
         try (InputStream defaultConfig = this.getClass().getClassLoader().getResourceAsStream("settings.properties")) {

@@ -13,4 +13,15 @@ public class Request {
         paramMap.put("src_text", src);
         return HttpUtil.post(url, paramMap);
     }
+
+    public static String post(String fromText, String toText, String srcText, String tgtText, String url,
+            String api_key) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("fromText", fromText);
+        paramMap.put("toText", toText);
+        paramMap.put("apikey", api_key);
+        paramMap.put("srcText", srcText);
+        paramMap.put("tgtText", tgtText);
+        return HttpUtil.post(url, paramMap);
+    }
 }

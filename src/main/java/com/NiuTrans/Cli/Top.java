@@ -8,8 +8,24 @@ import com.diogonunes.jcolor.Attribute;
 import java.util.List;
 
 public class Top {
+    private static Config config = new Settings();
+
+    public static void customize(String fromText, String toText, String srcText, String tgtText, String type)
+            throws Exception {
+        List<String> validType = List.of("word", "sentence");
+        if (!validType.contains(type)) {
+            throw new Exception("invalid type");
+        }
+        String result = Request.post(fromText, toText, srcText, tgtText, config.getUrl(type), config.getKey());
+        JSONObject json = JSONUtil.parseObj(result);
+        if (json.getInt("flag") == 0) {
+            String errorMessage = json.getStr("msg");
+            throw new Exception(errorMessage);
+        }
+        System.out.println(Ansi.colorize("添加成功!", Attribute.GREEN_TEXT()));
+    }
+
     public static void translate(String from, String to, String src, String type) throws Exception {
-        Config config = new Settings();
         List<String> validType = List.of("text", "XML", "compare");
         // 使用type参数覆盖配置文件中的type
         String finalType = (type == null) ? config.getType() : type;
