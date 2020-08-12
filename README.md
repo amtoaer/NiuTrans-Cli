@@ -83,7 +83,7 @@ Usage: <main class> [options] [command] [command options]
   java -jar NiuTrans-Cli-Version.jar translate '测试' from zh to en via text
   ```
 
-  其中`via`参数默认为配置文件内的`type`项，`from`参数默认为`auto`。[点击此处]()查看支持语言列表。
+  其中`via`参数默认为配置文件内的`type`项，`from`参数默认为`auto`。[点击此处](https://niutrans.com/documents/develop/develop_text/free#languageList)查看支持语言列表。
 
 + `customize`
 
