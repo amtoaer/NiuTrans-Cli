@@ -18,8 +18,8 @@ public class App {
         }
         String subCommand = jc.getParsedCommand();
         switch (subCommand) {
-            case "translate" -> Translate.run();
-            case "customize" -> Customize.run();
+            case "trans" -> Translate.run();
+            case "custom" -> Customize.run();
         }
     }
 }
