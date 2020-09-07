@@ -24,7 +24,7 @@ public class App {
     }
 }
 
-@Parameters(commandNames = { "translate" }, commandDescription = "Translate content")
+@Parameters(commandNames = { "trans" }, commandDescription = "Translate content")
 class Translate {
     @Parameter(names = { "from" }, description = "Language of source text")
     public static String from = "auto";
@@ -44,7 +44,7 @@ class Translate {
     }
 }
 
-@Parameters(commandNames = { "customize" }, commandDescription = "customize translation")
+@Parameters(commandNames = { "custom" }, commandDescription = "customize translation")
 class Customize {
     @Parameter(names = { "from" }, description = "Source text")
     public static String src = "";
