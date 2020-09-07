@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class SettingsTest {
-    Config settings = new Settings();
+    Config settings = Settings.getInstance();
 
     @Test
     public void settingsTest() {

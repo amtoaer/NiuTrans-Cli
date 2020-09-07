@@ -8,7 +8,7 @@ import com.diogonunes.jcolor.Attribute;
 import java.util.List;
 
 public class Top {
-    private static Config config = new Settings();
+    private static Config config = Settings.getInstance();
 
     public static void customize(String fromText, String toText, String srcText, String tgtText, String type)
             throws Exception {

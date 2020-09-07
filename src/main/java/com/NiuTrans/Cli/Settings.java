@@ -12,8 +12,16 @@ import java.util.HashMap;
 public class Settings implements Config {
     private final Properties props;
     private final Map<String, String> map;
+    private static Config config;
 
-    public Settings() {
+    public static Config getInstance() {
+        if (config == null) {
+            config = new Settings();
+        }
+        return config;
+    }
+
+    private Settings() {
         map = new HashMap<>();
 
         /* 翻译接口 */
