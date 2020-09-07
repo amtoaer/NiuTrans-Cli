@@ -9,6 +9,6 @@ public class SettingsTest {
 
     @Test
     public void settingsTest() {
-        assertEquals("531cb65d16b3ed2df2b4c6a6e44171ec", settings.getKey());
+        assertEquals("https://free.niutrans.com/NiuTransServer/translation", settings.getUrl("text"));
     }
 }
