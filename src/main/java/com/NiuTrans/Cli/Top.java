@@ -47,6 +47,15 @@ public class Top {
         }
     }
 
+    public static void set(String key, String value) throws Exception {
+        config.setPropertiesAndSave(key, value);
+        System.out.println(Ansi.colorize("设定成功！", Attribute.BRIGHT_BLUE_TEXT()));
+    }
+
+    public static void get(String key) throws Exception {
+        System.out.println(config.getProperties(key));
+    }
+
     private static void textParser(JSONObject json) {
         System.out.println(Ansi.colorize("文本翻译：", Attribute.YELLOW_TEXT()));
         System.out.println(Ansi.colorize((String) json.get("tgt_text"), Attribute.RED_TEXT()));

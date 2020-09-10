@@ -10,7 +10,7 @@ public class App {
 
     public static void main(String[] args) {
         JCommander jc = JCommander.newBuilder().addObject(new App()).addCommand(new Translate())
-                .addCommand(new Customize()).build();
+                .addCommand(new Customize()).addCommand(new Get()).addCommand(new Set()).build();
         jc.parse(args);
         if (help) {
             jc.usage();
@@ -20,6 +20,8 @@ public class App {
         switch (subCommand) {
             case "trans" -> Translate.run();
             case "custom" -> Customize.run();
+            case "set" -> Set.run();
+            case "get" -> Get.run();
         }
     }
 }
@@ -60,6 +62,37 @@ class Customize {
     public static void run() {
         try {
             Top.customize(from, to, src, tgt, type);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+@Parameters(commandNames = { "set" }, commandDescription = "set properties")
+class Set {
+    @Parameter(names = { "key", "k" }, description = "properties key")
+    public static String key;
+    @Parameter(names = { "value", "v" }, description = "properties value")
+    public static String value;
+
+    public static void run() {
+        try {
+            Top.set(key, value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+@Parameters(commandNames = { "get" }, commandDescription = "get properties")
+class Get {
+    @Parameter(description = "properties key")
+    public static String key;
+
+    public static void run() {
+        try {
+            Top.get(key);
         } catch (Exception e) {
             e.printStackTrace();
         }
