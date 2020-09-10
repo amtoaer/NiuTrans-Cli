@@ -33,17 +33,28 @@ type=compare
 
 `type`可选`text`、`XML`、`compare`，分别对应文本翻译、XML格式翻译、双语对照翻译。
 
+这两个属性可以在程序内进行修改/读取，例如：
+
+```bash
+# 将api-key设置为1234
+java -jar NiuTrans-Cli-Version.jar set k api-key v 
+# 输出api-key
+java -jar NiuTrans-Cli-Version.jar get api-key
+```
+
+
+
 ## 用法
 
 ```bash
-⟩ java -jar NiuTrans-Cli-1.3.jar help
+⟩ java -jar NiuTrans-Cli-Version.jar help
 Usage: <main class> [options] [command] [command options]
   Options:
     help, -h, --help
 
   Commands:
-    translate      Translate content
-      Usage: translate [options] srcText
+    trans      Translate content
+      Usage: trans [options] srcText
         Options:
           from
             Language of source text
@@ -54,8 +65,8 @@ Usage: <main class> [options] [command] [command options]
           via
             Translation method(accept text/XML/compare)
 
-    customize      customize translation
-      Usage: customize [options] Customize method(accept word/sentence)
+    custom      customize translation
+      Usage: custom [options] Customize method(accept word/sentence)
         Options:
           from
             Source text
@@ -70,22 +81,32 @@ Usage: <main class> [options] [command] [command options]
             Language of target text
             Default: en
 
+    get      get properties
+      Usage: get properties key
+
+    set      set properties
+      Usage: set [options]
+        Options:
+          key, k
+            properties key
+          value, v
+            properties value
 ```
 
-子命令有两个：
+子命令有四个，其中`get/set`如上文所述，剩余的两个为`trans/custom`：
 
-+ `translate`
++ `trans(translate)`
 
   用于翻译文本内容，示例如下：
 
   ```bash
   # 通过文本翻译将'测试'从zh（中文）翻译到en（英文）
-  java -jar NiuTrans-Cli-Version.jar translate '测试' from zh to en via text
+  java -jar NiuTrans-Cli-Version.jar trans '测试' from zh to en via text
   ```
 
   其中`via`参数默认为配置文件内的`type`项，`from`参数默认为`auto`。[点击此处](https://niutrans.com/documents/develop/develop_text/free#languageList)查看支持语言列表。
 
-+ `customize`
++ `custom(customize)`
 
   用于使用术语词典和翻译记忆功能，这两个功能的官方介绍如下：
 
@@ -101,7 +122,7 @@ Usage: <main class> [options] [command] [command options]
 
   ```bash
   # 使用术语词典，指定在之后的zh（中文）到en（英文）的翻译中，将'测试'一词翻译为'abcd'
-  java -jar NiuTrans-Cli-Version.jar customize word from '测试' to 'abcd' fl zh tl en
+  java -jar NiuTrans-Cli-Version.jar custom word from '测试' to 'abcd' fl zh tl en
   ```
 
   其中`from`参数为原始内容，`to`参数为想要翻译为的内容，`fl`和`tl`分别是`from language`和`to language`的缩写，分别对应`from`和`to`的语言。
@@ -112,7 +133,13 @@ Usage: <main class> [options] [command] [command options]
 
 `linux`可参考[这篇文章](https://allwens.work/makeJarExecutable/)设置，生成无需`java -jar`的可执行文件（假设文件名为`niu`）。将其移动到环境变量中，即可通过如下方式使用：
 
-![image-20200810200425034](https://allwens-work.oss-cn-beijing.aliyuncs.com/bed/image-20200810200425034.png)
+![](img/screenshot.png)
+
+对于`Arch Linux`，可以使用更为简单的安装方式达到上述效果：
+
+```bash
+yay -S niutrans-cli
+```
 
 
 ## 依赖
